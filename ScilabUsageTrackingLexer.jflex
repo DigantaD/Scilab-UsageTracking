@@ -3,12 +3,25 @@
 package org.scilab.modules.scinotes;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Map;
 import java.util.HashMap;
+
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
+import java.util.stream.*;
+import java.util.function.*;
+import static java.util.stream.Collectors.toCollection;
+
+import java.util.Timer;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Element;
 import org.scilab.modules.commons.ScilabCommonsUtils;
@@ -31,6 +44,8 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 	public int start;
 	public int end;
 	public int beginString;
+    public static List<String> commandslist = new ArrayList<String>();
+    public static List<String> macroslist = new ArrayList<String>();
 	public static HashMap<String, Integer> commands = new HashMap<String, Integer>();
 	public static HashMap<String, Integer> macros = new HashMap<String, Integer>();
 	public Set<String> infile; 
@@ -76,13 +91,23 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
     		macros.clear();
         int i=0;
     		if (funs != null) {
-    			for (i=0; i<funslength; i++)
-            commands.put(funs[i], i);
+                commandslist = Arrays.asList(funs);
+    		  for (i=0; i<funslength; i++){
+                    commands.put(funs[i], i);
+                }
     		}
+            
     		if (macs != null) {
-    			for (i=0; i<macslength; i++)
-            macros.put(macs[i], i);
+                macroslist = Arrays.asList(macs);
+    		  for (i=0; i<macslength; i++){
+                    macros.put(macs[i], i);
+              }
     		}
+
+             double totalCommands = commands.values().stream().collect(Collectors.summingInt(Integer::intValue)); 
+            double totalMacros = macros.values().stream().collect(Collectors.summingInt(Integer::intValue));
+            LocalDateTime currentTime = LocalDateTime.now();
+            LocalDate today = LocalDate.now();
     	}
     }
 
