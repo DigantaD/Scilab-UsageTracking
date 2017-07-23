@@ -86,6 +86,7 @@ public class UsageTrackingPreference extends JFrame {
 					prefs.putBoolean(ID1, true);
 					statusLabel.setText("SCILAB Usage Tracking ON");
 					mainFrame.dispose();
+					ScilabUsageTrackingLexer.update();
 					// From here, we will call the Google Analytics API to be implemented by HashMap to start the tracking process which will be the next step. 
 				}
 			});	

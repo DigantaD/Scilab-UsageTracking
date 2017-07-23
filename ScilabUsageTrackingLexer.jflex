@@ -33,7 +33,7 @@ import org.scilab.modules.commons.ScilabCommonsUtils;
 
 %public
 %class ScilabUsageTrackingLexer
-%extends UsageTrackingPreference
+%extends UsageTrackingPreferenceaAWWW3333332
 %final
 %unicode
 %char
